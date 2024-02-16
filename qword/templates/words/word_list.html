@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ title }}</h1> 
+    <table>
+      <tr>
+      <th>СЛОВО</th>
+      <th>ПЕРЕВОД</th>
+      <th style="width: 30px;"></th>
+      </tr>
+      {% for word in object_list %}
+        <tr>
+          <th>{{ word.word }}</th>
+          <th>{{ word.translate }}</th>
+          <th style="width: 30px;">
+             <form action="{% url 'words:delete' word.id %}">
+              <input class="delete" type="submit" value="✖" />
+            </form>
+          </th>
+        </tr>
+      {% endfor %}
+    </table>
+{% endblock %}

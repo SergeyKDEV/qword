@@ -1,0 +1,22 @@
+<header>
+  <div class="navbar">
+    <p>
+      <a class="header-logo" href="{% url 'homepage:homepage' %}">QWord</a>
+    </p>
+    <ul>
+      <li>
+        <a href="{% url 'homepage:homepage' %}">Главная</a>
+      </li>
+      <li>
+        <a href="{% url 'homepage:about' %}">О проекте</a>
+      </li>
+      <li>
+        <a href="{% url 'words:list' %}">Мой словарь</a>
+      </li>
+      <li>
+        <a href="{% url 'words:add' %}">Добавить</a>
+      </li>
+    </ul>
+  </div>
+</header>
+<hr>
