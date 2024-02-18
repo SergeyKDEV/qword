@@ -11,9 +11,10 @@ class WordListView(ListView):
     template_name = 'words/word_list.html'
 
 
-
-class AddWord(CreateView):
+class WordCreateView(CreateView):
     """Добавляет слово в БД."""
+    model = Word
+    fields = ('word', 'translate')
     template_name = 'words/word_add.html'
     form_class = WordForm
 
