@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import ListView
+from django.views.generic import CreateView, ListView
 
 from .forms import WordForm
 from .models import Word
@@ -11,17 +11,24 @@ class WordListView(ListView):
     template_name = 'words/word_list.html'
 
 
-def words_add(request):
+class WordCreateView(CreateView):
     """Добавляет слово в БД."""
+    model = Word
+    fields = ('word', 'translate')
     template_name = 'words/word_add.html'
-    form = WordForm(request.POST or None)
-    context = {
-        'form': form
-    }
-    if form.is_valid():
+    form_class = WordForm
+
+    def get_context_data(self, **kwargs):
+        # TODO
+        return  {
+            'form': form
+        }
+
+    def form_valid(self, form):
         form.save()
-        return redirect('words:list')
-    return render(request, template_name, context)
+
+    def get_success_url(self):
+        return reverse('words:list')
 
 
 def words_delete(request, pk):
